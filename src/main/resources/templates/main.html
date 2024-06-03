@@ -1,36 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/main-layout">
     <head th:insert="fragments/head-main"></head>
     <body>
         <header th:insert="fragments/header-main" style="background-color: var(--headerBackground);"></header>
         <main>
-            <h3 th:each="f: ${films}">
-                <span th:text="${f.id}"></span>.
-                <span th:text="${f.name}"></span>, year:
-                <span th:text="${f.year}"></span>, rating:
-                <span th:text="${f.rating}"></span>, description: 
-                <span th:text="${f.description}"></span>
-            </h3>
-            <form action="/add-film" method="post">
-                <div>
-                    <label for="filmName">Name:</label>
-                    <input type="text" name="name" id="filmName" class="form-control">
-                </div>
-                <div>
-                    <label for="filmYear">Year:</label>
-                    <input type="number" name="year" id="filmYear" class="form-control">
-                </div>
-                <div>
-                    <label for="filmRating">Rating:</label>
-                    <input type="number" step="0.1" name="rating" id="filmRating" class="form-control">
-                </div>
-                <div>
-                    <label for="filmDescription">Description:</label>
-                    <textarea type="text" rows="5" name="description" id="filmDescription"
-                    class="form-control"></textarea>
-                </div>
-                <button type="submit">ADD FILM</button>
-            </form>
+            <div layout:fragment="mainContent">
+                <table class = 'table table-striped'>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>YEAR</th>
+                            <th>RATING</th>
+                        </tr>
+                        <tbody>
+                            <tr th:each="film: ${films}">
+                                <td th:text="${film.id}"></td>
+                                <td th:text="${film.name}"></td>
+                                <td th:text="${film.description}"></td>
+                                <td th:text="${film.year}"></td>
+                                <td th:text="${film.rating}"></td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+                <form action="/add-film" method="post">
+                    <div>
+                        <label for="filmName">Name:</label>
+                        <input type="text" name="name" id="filmName" class="form-control">
+                    </div>
+                    <div>
+                        <label for="filmYear">Year:</label>
+                        <input type="number" name="year" id="filmYear" class="form-control">
+                    </div>
+                    <div>
+                        <label for="filmRating">Rating:</label>
+                        <input type="number" step="0.1" name="rating" id="filmRating" class="form-control">
+                    </div>
+                    <div>
+                        <label for="filmDescription">Description:</label>
+                        <textarea type="text" rows="5" name="description" id="filmDescription"
+                        class="form-control"></textarea>
+                    </div>
+                    <button type="submit">ADD FILM</button>
+                </form>
+            </div>
         </main>
     </body>
 </html>
