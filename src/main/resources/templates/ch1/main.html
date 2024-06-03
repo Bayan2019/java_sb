@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/head-bitlab">
+    </head>
+    <body>
+        <header th:insert="fragments/header-bitlab-shop">          
+        </header>
+        <main style="margin: 5px;">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col" th:each="item: ${items}">
+                    <div class="card text-center mb-3 h-100">
+                        <div class="card-header">
+                            <a th:href="@{'/bitlab-shop/details/'+${item.id}}">
+                                <h5 th:text="${item.name}"></h5>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${item.price}"></h5>
+                            <p class="card-text" th:text="${item.description}"></p>
+                            <a href="#" class="btn btn-success money">
+                                Buy Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

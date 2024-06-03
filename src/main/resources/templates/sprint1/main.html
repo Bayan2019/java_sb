@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/head-bitlab.html"></head>
+    <body>
+        <header th:insert="fragments/header-bitlab-academy.html"></header>
+        <main>
+            <button type="button" class="btn btn-primary" 
+                data-bs-toggle="modal" data-bs-target="#add-student-form">
+                + Add Student
+            </button>
+            <div class="modal" tabindex="-1" id="add-student-form">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">NEW STUDENT</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form th:action="@{'/bitlab-academy'}" method="post">
+                            <div class="modal-body">
+                                <label for="studentName">NAME</label>
+                                <input type="text" name="name" id="studentName" /> <br>
+                                <label for="studentSurname">SURNAME</label>
+                                <input type="text" name="surname" id="studentSurname" /> <br>
+                                <label for="studentExam">EXAM</label>
+                                <input type="number" name="exam" id="studentExam"
+                                    max="100" min="0" /> <br>
+                                <!-- <label for="studentMark">MARK</label>
+                                <input type="text" name="mark" id="studentMark" /> <br> -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                                <button type="submit" class="btn btn-primary">ADD</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <table class = 'table table-striped '>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>SURNAME</th>
+                        <th>EXAM</th>
+                        <th>MARK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student: ${students}" 
+                    th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}">
+                        <td th:text="${student.id}"
+                        th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}"></td>
+                        <td th:text="${student.name}"
+                        th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}"></td>
+                        <td th:text="${student.surname}"
+                        th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}"></td>
+                        <td th:text="${student.exam}"
+                        th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}"></td>
+                        <td th:text="${student.mark}"
+                        th:style="${student.exam>=50 ? 'color:green;' : 'color:red;'}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>

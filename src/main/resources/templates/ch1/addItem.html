@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/head-bitlab.html">
+    </head>
+    <body>
+        <header th:insert="fragments/header-bitlab-shop">          
+        </header>
+        <main style="margin: 5px;">
+            <form th:action="@{'/bitlab-shop/add-item'}" method="post">
+                <div>
+                    <label for="itemName">Name:</label>
+                    <input type="text" name="name" id="itemName" class="form-control">
+                </div>
+                <div>
+                    <label for="itemPrice">Price:</label>
+                    <input type="number" step="0.01" name="price" id="itemPrice" class="form-control">
+                </div>
+                <div>
+                    <label for="itemDescription">Description:</label>
+                    <textarea type="text" rows="5" name="description" id="itemDescription"
+                    class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn">ADD ITEM</button>
+            </form>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap.min.css'}">
+<!-- <link rel="stylesheet" type="text/css" th:href="@{'/css/bootstrap-icons.css'}"> -->
+<script th:src="@{'/js/bootstrap.bundle.min.js'}"></script>
+<link rel="icon" type="image/x-icon" href="https://bitlab.kz/images/favicons/android-chrome-144x144.png" />
+<title>BITLAB</title>
+<style>
+    :root {
+        --navbarBackground: #1b4d3e;
+        --navbarColor: #e5e4e2;
+        --navbarAcademyBackground: #E3F9F9;
+        --brandColor: #00cccc;
+        --searchButtonBackground: "#09A29D";
+        --detailsBackground: #555555;
+        --detailsColor: #f0e0d1;
+        --btnDangerBackground: #ff4dff;
+        --btnDangerLightBackground: #ffc0cb;
+        --moneyColor: #009966;
+    }
+    nav {
+        background-color: var(--navbarBackground);
+        color: var(--navbarColor);
+    }
+    nav form {
+        border: none;
+        padding: 0;
+    }
+    nav form button {
+        background-color: var(--searchButtonBackground);
+        color: var(--navbarBackground);
+        border-radius: 5px;
+    }
+    .nav-link {
+        color: var(--navbarColor);
+    }
+    .navbar .container-fluid #navbarScroll .nav-item .academy {
+        color: var(--navbarBackground);
+    }
+    .navbar .container-fluid #navbarScroll .nav-item .academy:hover {
+        color: var(--brandColor);
+    }
+    .navbar-brand {
+        color: var(--brandColor);
+    }
+    main {
+        padding: 5px;
+    }
+    button {
+        margin: 3px;
+    }
+    button, .btn {
+        color: var(--navbarColor);
+        background-color: var(--navbarBackground);
+        border-radius: 3px;
+    }
+    button, .btn:hover {
+        color: var(--navbarColor);
+        background-color: var(--brandColor);
+    }
+    .btn-danger {
+        background-color: red;
+    }
+    .btn-danger:hover {
+        background-color: var(--btnDangerBackground);
+    }
+    td .btn-sm {
+        color: var(--detailsColor);
+        background-color: var(--detailsBackground);
+    }
+    td .btn-sm:hover {
+        color: var(--detailsColor);
+        background-color: var(--brandColor);
+    }
+    form {
+        border-radius: 5px;
+        border: var(--brandColor) solid 2px;
+        padding: 6px;
+    }
+    h3 {
+        color: var(--brandColor);
+    }
+
+    .money {
+        background-color: var(--moneyColor);
+    }
+    .money:hover {
+        background-color: var(--brandColor);
+    }
+    .vertical-navbar {
+        background-color: var(--navbarBackground);
+    }
+    .nav-item form {
+        padding: 0;
+        margin: 0;
+    }
+    .reference {
+        border: none;
+        background: transparent;
+        padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);;
+    }
+    .reference:hover {
+        color: var(--brandColor);
+        background: transparent;
+    }
+</style>
