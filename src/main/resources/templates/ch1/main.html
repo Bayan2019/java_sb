@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:insert="fragments/head-bitlab">
-    </head>
-    <body>
-        <header th:insert="fragments/header-bitlab-shop">          
-        </header>
-        <main style="margin: 5px;">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/bitlab-shop-layout">
+    <!-- <head th:insert="fragments/head-bitlab">
+    </head> -->
+    <!-- <body> -->
+        <!-- <header th:insert="fragments/header-bitlab-shop">          
+        </header> -->
+        <div layout:fragment="siteContent">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col" th:each="item: ${items}">
                     <div class="card text-center mb-3 h-100">
@@ -24,6 +26,6 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </body>
+        </div>
+    <!-- </body> -->
 </html>

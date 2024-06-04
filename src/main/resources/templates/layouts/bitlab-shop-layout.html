@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head th:insert="fragments/head-main"></head>
+    <head th:insert="fragments/head-bitlab"></head>
     <body>
-        <header th:insert="fragments/header-main" style="background-color: var(--headerBackground);"></header>
+        <header th:insert="fragments/header-bitlab-shop" style="background-color: var(--headerBackground);"></header>
         <main>
             <div class="row">
-                <div class="col-9" layout:fragment="mainContent"></div>
-                <div class="col-3 mt-2">
+                <div layout:fragment="siteContent"></div>
+                <!-- <div class="col-3">
                     <div th:insert="fragments/list-group"></div>
-                </div>
+                </div> -->
             </div>
         </main>
     </body>

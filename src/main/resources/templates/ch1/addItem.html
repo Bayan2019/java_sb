@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head th:insert="fragments/head-bitlab.html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/bitlab-shop-layout">
+    <!-- <head th:insert="fragments/head-bitlab.html">
     </head>
     <body>
         <header th:insert="fragments/header-bitlab-shop">          
-        </header>
-        <main style="margin: 5px;">
+        </header> -->
+        <div layout:fragment="siteContent">
             <form th:action="@{'/bitlab-shop/add-item'}" method="post">
                 <div>
                     <label for="itemName">Name:</label>
@@ -22,6 +24,6 @@
                 </div>
                 <button type="submit" class="btn">ADD ITEM</button>
             </form>
-        </main>
-    </body>
+        </div>
+    <!-- </body> -->
 </html>
