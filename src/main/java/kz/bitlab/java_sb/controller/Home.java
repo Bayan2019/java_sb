@@ -11,6 +11,7 @@ import kz.bitlab.java_sb.db.DBManager;
 import kz.bitlab.java_sb.db.Film;
 import kz.bitlab.java_sb.db.Item;
 import kz.bitlab.java_sb.db.Student;
+import kz.bitlab.java_sb.db.Task;
 
 
 @Controller
@@ -73,6 +74,48 @@ public class Home {
     public String bitlabShopDelete(@RequestParam Long id) {
         DBManager.deleteItemById(id);
         return "redirect:/bitlab-shop";
+    }
+
+    @GetMapping(value = "/task-manager")
+    public String taskManager(Model model) {
+        model.addAttribute("tasks", DBManager.getAllTasks());
+        return "ch4/main";
+    }
+
+    @PostMapping(value = "/task-manager/add-task")
+    public String taskManagerAddTask(@RequestParam String name, @RequestParam String description, 
+        @RequestParam String deadlineDate) {
+
+        Task task = new Task();
+        task.setName(name);
+        task.setDescription(description);
+        task.setDeadlineDate(deadlineDate);
+        task.setStatus(false);
+
+        DBManager.addTask(task);
+        return "redirect:/task-manager";
+    }
+
+    @GetMapping(value = "/task-manager/details/{id}")
+    public String taskManagerDetails(Model model, @PathVariable Long id) {
+        model.addAttribute("task", DBManager.getTaskById(id));
+        return "ch4/detail";
+    }
+
+    @PostMapping(value = "/task-manager/details")
+    public String taskManagerDetailsUpdate(@RequestParam Long id, @RequestParam String name, 
+        @RequestParam String description, @RequestParam String deadlineDate, @RequestParam String status) {
+
+        Boolean completed = (status.equals("yes"));
+        Task task = new Task(id, name, description, deadlineDate, completed);
+        DBManager.updateTaskById(task.getId(), task);
+        return "redirect:/task-manager";
+    }
+
+    @PostMapping(value = "/task-manager/delete/{id}")
+    public String taskManagerDelete(@PathVariable Long id) {
+        DBManager.deleteTaskById(id);
+        return "redirect:/task-manager";
     }
     
 }

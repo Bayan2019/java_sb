@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/tasks-manager-layout">
+    <div layout:fragment="siteContent">
+        <div th:object="${task}">
+            <form action="/task-manager/details" method="post">
+
+                <label for="taskId">ID</label>
+                <input type="text" name="id" id="taskId" th:value="${task.id}" readonly> <br/>
+
+                <label for="taskName">NAME</label>
+                <input type="text" name="name" id="taskName" th:value="${task.name}"> <br/>
+
+                <label for="taskDescription">DESCRIPTION</label>
+                <textarea name="description" id="taskDescription" 
+                    th:text="${task.description}"
+                    class="form-control" style="height: 100px">
+                </textarea>
+                <br />
+
+                <label for="taskDeadline">DEADLINE</label>
+                <input type="date" name="deadlineDate" id="taskDeadline" th:value="${task.deadlineDate}"> <br />
+
+                <label for="taskStatus">STATUS</label>
+                <select name="status" id="taskStatus">
+                    <option th:value="${task.status ? 'yes' : 'no'}"
+                    th:text="${task.status ? 'yes' : 'no'}"></option>
+                    <option th:value="${!task.status ? 'yes' : 'no'}"
+                    th:text="${!task.status ? 'yes' : 'no'}"></option>
+                </select><br>
+                <div class="d-inline-flex">
+                    <button type="submit" class="btn">SAVE</button>
+                    <button type="submit" class="btn-danger"
+                            th:formaction="@{'/task-manager/delete/'+${task.id}}">DELETE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>
