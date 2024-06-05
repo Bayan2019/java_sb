@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package kz.bitlab.java_sb.db;
+package kz.bitlab.java_sb.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,10 +18,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Task {
+public class ApplicationRequest {
     private Long id;
-    private String name;
-    private String description;
-    private String deadlineDate;
-    private Boolean status;
+    private String userName;
+    private String courseName;
+    private String commentary;
+    private String phone;
+    private boolean handled;
 }

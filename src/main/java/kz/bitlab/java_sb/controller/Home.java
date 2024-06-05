@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import kz.bitlab.java_sb.db.DBManager;
-import kz.bitlab.java_sb.db.Item;
-import kz.bitlab.java_sb.db.Student;
-import kz.bitlab.java_sb.db.Task;
 import kz.bitlab.java_sb.entity.Film;
+import kz.bitlab.java_sb.entity.Item;
+import kz.bitlab.java_sb.entity.Student;
+import kz.bitlab.java_sb.entity.Task;
 import kz.bitlab.java_sb.service.impl.FilmServiceImpl;
+import kz.bitlab.java_sb.service.impl.ItemServiceImpl;
+import kz.bitlab.java_sb.service.impl.StudentServiceImpl;
+import kz.bitlab.java_sb.service.impl.TaskServiceImpl;
 
 
 @Controller
@@ -21,6 +23,12 @@ public class Home {
 
     @Autowired
     private FilmServiceImpl filmService;
+    @Autowired
+    private ItemServiceImpl itemService;
+    @Autowired
+    private StudentServiceImpl studentService;
+    @Autowired
+    private TaskServiceImpl taskService;
 
     @GetMapping(value="/")
     public String mainPage(Model model) {
@@ -36,19 +44,19 @@ public class Home {
 
     @GetMapping(value = "/bitlab-academy")
     public String bitlabAcademyMain(Model model) {
-        model.addAttribute("students", DBManager.getAllStudents());
+        model.addAttribute("students", studentService.getAllStudents());
         return "sprint1/main";
     }
     
      @PostMapping(value = "/bitlab-academy")
     public String bitlabAcademyAddItemP(Student student) {
-        DBManager.addStudent(student);
+        studentService.addStudent(student);
         return "redirect:/bitlab-academy";
     }
 
     @GetMapping(value = "/bitlab-shop")
     public String bitlabShop(Model model) {
-        model.addAttribute("items", DBManager.getAllItems());
+        model.addAttribute("items", itemService.getAllItems());
         return "ch1/main";
     }
 
@@ -59,31 +67,31 @@ public class Home {
 
     @PostMapping(value = "/bitlab-shop/add-item")
     public String bitlabShopAddItemP(Item item) {
-        DBManager.addItem(item);
+        itemService.addItem(item);
         return "redirect:/bitlab-shop";
     }
 
     @GetMapping(value = "/bitlab-shop/details/{id}")
     public String bitlabShopDetail(Model model, @PathVariable Long id) {
-        model.addAttribute("item", DBManager.getItemById(id));
+        model.addAttribute("item", itemService.getItemById(id));
         return "ch1/detail";
     }
 
     @PostMapping(value = "/bitlab-shop/details")
     public String bitlabShopDetailP(Item item) {
-        DBManager.updateItemById(item.getId(), item);
+        itemService.updateItemById(item.getId(), item);
         return "redirect:/bitlab-shop";
     }
 
     @PostMapping(value = "/bitlab-shop/delete")
     public String bitlabShopDelete(@RequestParam Long id) {
-        DBManager.deleteItemById(id);
+        itemService.deleteItemById(id);
         return "redirect:/bitlab-shop";
     }
 
     @GetMapping(value = "/task-manager")
     public String taskManager(Model model) {
-        model.addAttribute("tasks", DBManager.getAllTasks());
+        model.addAttribute("tasks", taskService.getAllTasks());
         return "ch4/main";
     }
 
@@ -97,13 +105,13 @@ public class Home {
         task.setDeadlineDate(deadlineDate);
         task.setStatus(false);
 
-        DBManager.addTask(task);
+        taskService.addTask(task);
         return "redirect:/task-manager";
     }
 
     @GetMapping(value = "/task-manager/details/{id}")
     public String taskManagerDetails(Model model, @PathVariable Long id) {
-        model.addAttribute("task", DBManager.getTaskById(id));
+        model.addAttribute("task", taskService.getTaskById(id));
         return "ch4/detail";
     }
 
@@ -113,13 +121,13 @@ public class Home {
 
         Boolean completed = (status.equals("yes"));
         Task task = new Task(id, name, description, deadlineDate, completed);
-        DBManager.updateTaskById(task.getId(), task);
+        taskService.updateTaskById(task.getId(), task);
         return "redirect:/task-manager";
     }
 
     @PostMapping(value = "/task-manager/delete/{id}")
     public String taskManagerDelete(@PathVariable Long id) {
-        DBManager.deleteTaskById(id);
+        taskService.deleteTaskById(id);
         return "redirect:/task-manager";
     }
     
