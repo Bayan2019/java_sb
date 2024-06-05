@@ -1,5 +1,6 @@
 package kz.bitlab.java_sb.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,24 +9,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kz.bitlab.java_sb.db.DBManager;
-import kz.bitlab.java_sb.db.Film;
 import kz.bitlab.java_sb.db.Item;
 import kz.bitlab.java_sb.db.Student;
 import kz.bitlab.java_sb.db.Task;
+import kz.bitlab.java_sb.entity.Film;
+import kz.bitlab.java_sb.service.impl.FilmServiceImpl;
 
 
 @Controller
 public class Home {
 
+    @Autowired
+    private FilmServiceImpl filmService;
+
     @GetMapping(value="/")
     public String mainPage(Model model) {
-        model.addAttribute("films", DBManager.getAlFilms());
+        model.addAttribute("films", filmService.getAllFilms());
         return "main";
     }
 
     @PostMapping(value = "/add-film")
     public String addFilm(Film film) {
-        DBManager.addFilm(film);
+        filmService.addFilm(film);
         return "redirect:/";
     }
 

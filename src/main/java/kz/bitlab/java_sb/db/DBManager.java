@@ -8,21 +8,14 @@ import java.util.ArrayList;
 // import lombok.Setter;
 
 public class DBManager {
-    private static ArrayList<Film> films = new ArrayList<>();
     private static ArrayList<Item> items = new ArrayList<>();
     private static ArrayList<Student> students = new ArrayList<>();
     private static ArrayList<Task> tasks = new ArrayList<>();
 
-    private static Long id_films = 4L;
     private static Long id_items = 7L;
     private static Long id_students = 6L;
     private static Long id_tasks = 6L;
 
-    static {
-        films.add(new Film(1L, "Matrix", "About Neo", 2002, 8.8));
-        films.add(new Film(2L, "Harry Potter", "About Harry Potter", 2001, 8.5));
-        films.add(new Film(3L, "Duna", "About Maudib", 2023, 8.7));
-    }
 
     static {
         items.add(new Item(1L, "Mac Book Pro", "8 GB RAM 255 GB SSD Intel Core i7", 1199.99, 10));
@@ -49,22 +42,12 @@ public class DBManager {
         tasks.add(new Task(5L, "Learn Italian", "", "2021-01-05", false));
     }
 
-    public static ArrayList<Film> getAlFilms() {
-        return films;
-    }
-
-    public static void addFilm(Film film) {
-        film.setId(id_films);
-        id_films++;
-        films.add(film);
-    }
-
     public static ArrayList<Item> getAllItems() {
         return items;
     }
 
     public static void addItem(Item item) {
-        item.setId(id_films);
+        item.setId(id_items);
         id_items++;
         items.add(item);
     }
