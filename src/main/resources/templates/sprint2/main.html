@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/crm-layout">
+        <div layout:fragment="siteContent">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col" th:each="ar: ${applicationRequests}">
+                    <div class="card text-center mb-3 h-100">
+                        <div class="card-header">
+                            <a th:href="@{'/crm/details/'+${ar.id}}">
+                                <h5 th:text="${ar.userName}"></h5>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${ar.courseName}"></h5>
+                            <p class="card-text" th:text="${ar.commentary}"></p>
+                            <a href="#" class="btn btn-success money">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </body> -->
+</html>
