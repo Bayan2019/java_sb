@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/crm-layout">
+        <div layout:fragment="siteContent">
+            <form th:action="@{'/crm/add-request'}" method="post">
+                <div>
+                    <label for="applicationName">Name:</label>
+                    <input type="text" name="userName" id="applicationName" class="form-control">
+                </div>
+                <div>
+                    <label for="applicationCourse">Course:</label>
+                    <input type="text" name="courseName" id="applicationCourse" class="form-control">
+                </div>
+                <div>
+                    <label for="applicationCommentary">Description:</label>
+                    <textarea type="text" rows="5" name="commentary" id="applicationCommentary"
+                    class="form-control"></textarea>
+                </div>
+                <div>
+                    <label for="applicationPhone">Phone:</label>
+                    <input type="tel" name="phone" id="applicationPhone" class="form-control" 
+                    pattern="^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$"
+                    placeholder="+7 702-555-0125">
+                </div>
+                <button type="submit" class="btn">ADD APPLICATION REQUEST</button>
+            </form>
+        </div>
+</html>

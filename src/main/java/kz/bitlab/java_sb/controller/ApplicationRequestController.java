@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import kz.bitlab.java_sb.repository.ApplicationRequestRepository;
+import kz.bitlab.java_sb.model.ApplicationRequest;
+import kz.bitlab.java_sb.service.ApplicationRequestService;
+
 
 
 /**
@@ -21,12 +25,30 @@ import kz.bitlab.java_sb.repository.ApplicationRequestRepository;
 public class ApplicationRequestController {
 
     @Autowired
-    private ApplicationRequestRepository applicationRequestRepository;
+    private ApplicationRequestService applicationRequestService;
 
     @GetMapping(value="/crm")
     public String mainPage(Model model) {
-        model.addAttribute("applicationRequests", applicationRequestRepository.findAll());
+        model.addAttribute("applicationRequests", applicationRequestService.getAllApplicationRequests());
         return "sprint2/main";
+    }
+
+    @GetMapping(value="/crm/add-request")
+    public String addRequest() {        
+        return "sprint2/add-request";
+    }
+    
+    @PostMapping(value="/crm/add-request")
+    public String addRequestP(@RequestParam String userName, @RequestParam String courseName, @RequestParam String commentary, @RequestParam String phone) {
+        ApplicationRequest applicationRequest = new ApplicationRequest();
+        applicationRequest.setUserName(userName);
+        applicationRequest.setCourseName(courseName);
+        applicationRequest.setCommentary(commentary);
+        applicationRequest.setPhone(phone);
+        applicationRequest.setHandled(false);
+
+        applicationRequestService.addApplicationRequest(applicationRequest);
+        return "redirect:/crm";
     }
     
 

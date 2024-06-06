@@ -5,7 +5,11 @@
 
 package kz.bitlab.java_sb.service;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
+
+import kz.bitlab.java_sb.model.ApplicationRequest;
 
 /**
  *
@@ -14,4 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ApplicationRequestService {
 
+    ArrayList<ApplicationRequest> getAllApplicationRequests();
+
+    void addApplicationRequest(ApplicationRequest applicationRequest);
 }
