@@ -5,19 +5,16 @@
         <div layout:fragment="siteContent">
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col" th:each="ar: ${applicationRequests}">
-                    <div class="card text-center mb-3 h-100">
-                        <div class="card-header">
-                            <a th:href="@{'/crm/details/'+${ar.id}}">
-                                <h5 th:text="${ar.userName}"></h5>
-                            </a>
-                        </div>
+                    <div th:class="${ar.handled ? 'card border-success text-success' : 'card border-danger text-danger'}">
+                        <h5 class="card-header" th:text="${ar.userName}"></h5>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${ar.courseName}"></h5>
                             <p class="card-text" th:text="${ar.commentary}"></p>
-                            <a href="#" class="btn btn-success money">
-                                Details
+                            <a class="btn btn-primary" th:href="@{'/crm/details/'+${ar.id}}">
+                                DETAILS
                             </a>
                         </div>
+                        <div class="card-footer bg-transparent" th:text="${ar.phone}"></div>
                     </div>
                 </div>
             </div>
