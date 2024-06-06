@@ -33,4 +33,19 @@ public class ApplicationRequestServiceImpl implements ApplicationRequestService{
     public void addApplicationRequest(ApplicationRequest applicationRequest) {
         applicationRequestRepository.save(applicationRequest);
     }
+
+    @Override
+    public void deleteApplicationRequest(Long id) {
+        applicationRequestRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateApplicationRequest(ApplicationRequest applicationRequest) {
+        applicationRequestRepository.save(applicationRequest);
+    }
+
+    @Override
+    public ApplicationRequest getApplicationRequestById(Long id) {
+        return applicationRequestRepository.findById(id).orElse(null);
+    }
 }

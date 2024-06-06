@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="layouts/bitlab-shop-layout">
+    <div layout:fragment="siteContent">
+        <div style="margin: 5px;" th:object="${ar}">
+            <form th:action="@{'/crm/detail-request'}" method="post">
+                <div>
+                    <label for="applicationId">ID</label>
+                    <input type="text" name="id" id="applicationId" th:value="${ar.id}" readonly class="form-control"> <br/>
+                </div>
+                <div>
+                    <label for="applicationName">Name:</label>
+                    <input type="text" name="userName" id="applicationName" th:value="${ar.userName}" class="form-control">
+                </div>
+                <div>
+                    <label for="applicationCourse">Course:</label>
+                    <input type="text" name="courseName" id="applicationCourse" th:value="${ar.courseName}" class="form-control">
+                </div>
+                <div>
+                    <label for="applicationCommentary">Description:</label>
+                    <textarea type="text" rows="5" name="commentary" id="applicationCommentary"
+                    th:text="${ar.commentary}"
+                    class="form-control"></textarea>
+                </div>
+                <div>
+                    <label for="applicationPhone">Phone:</label>
+                    <input type="tel" name="phone" id="applicationPhone" class="form-control" 
+                    pattern="^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$"
+                    th:value="${ar.phone}">
+                </div>
+                <button type="submit" class="btn">SAVE</button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteItem">
+                    DELETE
+                </button>
+            </form>
+            <div class="modal" tabindex="-1" id="deleteItem">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">CONFIRM DELETE</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form th:action="@{'/bitlab-shop/delete'}" method="post">
+                            <div class="modal-body">
+                                <input type="hidden" name="id" th:value="${item.id}" readonly />
+                                <h3>Are you sure?</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

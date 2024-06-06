@@ -71,13 +71,13 @@ public class Home {
         return "redirect:/bitlab-shop";
     }
 
-    @GetMapping(value = "/bitlab-shop/details/{id}")
+    @GetMapping(value = "/bitlab-shop/detail/{id}")
     public String bitlabShopDetail(Model model, @PathVariable Long id) {
         model.addAttribute("item", itemService.getItemById(id));
         return "ch1/detail";
     }
 
-    @PostMapping(value = "/bitlab-shop/details")
+    @PostMapping(value = "/bitlab-shop/detail")
     public String bitlabShopDetailP(Item item) {
         itemService.updateItemById(item.getId(), item);
         return "redirect:/bitlab-shop";
@@ -109,13 +109,13 @@ public class Home {
         return "redirect:/task-manager";
     }
 
-    @GetMapping(value = "/task-manager/details/{id}")
+    @GetMapping(value = "/task-manager/detail/{id}")
     public String taskManagerDetails(Model model, @PathVariable Long id) {
         model.addAttribute("task", taskService.getTaskById(id));
         return "ch4/detail";
     }
 
-    @PostMapping(value = "/task-manager/details")
+    @PostMapping(value = "/task-manager/detail")
     public String taskManagerDetailsUpdate(@RequestParam Long id, @RequestParam String name, 
         @RequestParam String description, @RequestParam String deadlineDate, @RequestParam String status) {
 

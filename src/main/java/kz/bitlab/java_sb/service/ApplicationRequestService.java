@@ -21,4 +21,10 @@ public interface ApplicationRequestService {
     ArrayList<ApplicationRequest> getAllApplicationRequests();
 
     void addApplicationRequest(ApplicationRequest applicationRequest);
+
+    void deleteApplicationRequest(Long id);
+
+    void updateApplicationRequest(ApplicationRequest applicationRequest); 
+
+    ApplicationRequest getApplicationRequestById(Long id);
 }

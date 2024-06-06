@@ -12,7 +12,7 @@
                 <div class="col" th:each="item: ${items}">
                     <div class="card text-center mb-3 h-100">
                         <div class="card-header">
-                            <a th:href="@{'/bitlab-shop/details/'+${item.id}}">
+                            <a th:href="@{'/bitlab-shop/detail/'+${item.id}}">
                                 <h5 th:text="${item.name}"></h5>
                             </a>
                         </div>
