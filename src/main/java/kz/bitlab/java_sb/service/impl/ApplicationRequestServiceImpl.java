@@ -48,4 +48,10 @@ public class ApplicationRequestServiceImpl implements ApplicationRequestService{
     public ApplicationRequest getApplicationRequestById(Long id) {
         return applicationRequestRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public void processApplicationRequest(ApplicationRequest applicationRequest) {
+        applicationRequest.setHandled(true);
+        applicationRequestRepository.save(applicationRequest);
+    }
 }

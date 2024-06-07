@@ -58,5 +58,22 @@ public class ApplicationRequestController {
         return "sprint2/detail-request";
     }
     
+    @PostMapping(value = "/crm/detail-request")
+    public String detailRequestUpdate(ApplicationRequest applicationRequest) {
+        applicationRequestService.updateApplicationRequest(applicationRequest);
+        return "redirect:/crm/detail-request/"+applicationRequest.getId().toString();
+    }
+
+    @PostMapping(value = "/crm/detail-request/process")
+    public String detailRequestProcessed(@RequestParam Long id) {
+        applicationRequestService.processApplicationRequest(applicationRequestService.getApplicationRequestById(id));
+        return "redirect:/crm/detail-request/"+id.toString();
+    }
+
+    @PostMapping(value = "/crm/detail-request/delete")
+    public String detailRequestDelete(@RequestParam Long id) {
+        applicationRequestService.deleteApplicationRequest(id);
+        return "redirect:/crm";
+    }
 
 }

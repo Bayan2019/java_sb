@@ -27,4 +27,6 @@ public interface ApplicationRequestService {
     void updateApplicationRequest(ApplicationRequest applicationRequest); 
 
     ApplicationRequest getApplicationRequestById(Long id);
+
+    void processApplicationRequest(ApplicationRequest applicationRequest); 
 }
