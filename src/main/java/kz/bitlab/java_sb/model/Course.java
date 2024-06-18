@@ -10,8 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,27 +21,20 @@ import lombok.Setter;
  * @author bayan
  */
 @Entity
-@Table(name="application_requests")
+@Table(name="courses")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ApplicationRequest {
+public class Course {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    @Column(name="username")
-    private String userName;
-
-    @ManyToOne
-    @JoinColumn(name="course_id")
-    private Course course;
-    
-    @Column(name="commentary", columnDefinition="text")
-    private String commentary;
-    @Column(name="phone")
-    private String phone;
-    @Column(name="handled")
-    private boolean handled;
+    @Column(name="name")
+    private String name;
+    @Column(name="description")
+    private String description;
+    @Column(name="price")
+    private int price;
 }

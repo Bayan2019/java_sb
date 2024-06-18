@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kz.bitlab.java_sb.model.ApplicationRequest;
-import kz.bitlab.java_sb.service.ApplicationRequestService;
+import kz.bitlab.java_sb.service.impl.ApplicationRequestServiceImpl;
+import kz.bitlab.java_sb.service.impl.CourseServiceImpl;
 
 
 
@@ -26,7 +27,9 @@ import kz.bitlab.java_sb.service.ApplicationRequestService;
 public class ApplicationRequestController {
 
     @Autowired
-    private ApplicationRequestService applicationRequestService;
+    private ApplicationRequestServiceImpl applicationRequestService;
+    @Autowired
+    private CourseServiceImpl courseService;
 
     @GetMapping(value="/crm")
     public String mainPage(Model model) {
@@ -35,7 +38,8 @@ public class ApplicationRequestController {
     }
 
     @GetMapping(value="/crm/add-request")
-    public String addRequest() {        
+    public String addRequest(Model model) {
+        model.addAttribute("courses", courseService.getAllCourses());        
         return "sprint2/add-request";
     }
     
@@ -43,7 +47,7 @@ public class ApplicationRequestController {
     public String addRequestP(@RequestParam String userName, @RequestParam String courseName, @RequestParam String commentary, @RequestParam String phone) {
         ApplicationRequest applicationRequest = new ApplicationRequest();
         applicationRequest.setUserName(userName);
-        applicationRequest.setCourseName(courseName);
+        // applicationRequest.setCourseName(courseName);
         applicationRequest.setCommentary(commentary);
         applicationRequest.setPhone(phone);
         applicationRequest.setHandled(false);
@@ -55,6 +59,7 @@ public class ApplicationRequestController {
     @GetMapping(value = "/crm/detail-request/{id}")
     public String detailRequest(Model model, @PathVariable Long id) {
         model.addAttribute("ar", applicationRequestService.getApplicationRequestById(id));
+        model.addAttribute("courses", courseService.getAllCourses());
         return "sprint2/detail-request";
     }
     
