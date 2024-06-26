@@ -5,6 +5,9 @@
 
 package kz.bitlab.java_sb.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,4 +49,7 @@ public class ApplicationRequest {
     private String phone;
     @Column(name="handled")
     private boolean handled;
+
+    @ManyToOne
+    private List<Operator> operators = new ArrayList<>();
 }
