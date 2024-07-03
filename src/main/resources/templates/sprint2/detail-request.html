@@ -37,7 +37,13 @@
                     th:value="${ar.phone}">
                 </div>
                 <button type="submit" class="btn btn-secondary">SAVE</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#processApplicationRequest">PROCESS</button>
+                <button type="button" 
+                    class="btn btn-primary" 
+                    data-bs-toggle="modal"
+                    th:style="${ar.handled} ? 'display: none' : ''"
+                    data-bs-target="#processApplicationRequest">
+                    PROCESS
+                </button>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteApplicationRequest">
                     DELETE
                 </button>
