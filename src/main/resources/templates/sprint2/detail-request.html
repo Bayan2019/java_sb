@@ -50,6 +50,28 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form th:action="@{'/crm/detail-request/process'}" method="post">
+                            <input type="hidden" name="application_request_id" th:value="${ar.id}">
+                            <div class="col-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th></th>
+                                        <th>NAME</th>
+                                        <th>SURNAME</th>
+                                        <th>DEPARTMENT</th>
+                                    </thead>
+                                    <tbody th:each="operator: ${operators}">
+                                        <input type="hidden" name="operator_id" th:value="${operator.id}">
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" name="operator" value="${operator.id}">
+                                            </td>
+                                            <td th:text="${operator.name}"></td>
+                                            <td th:text="${operator.surname}"></td>
+                                            <td th:text="${operator.department}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="modal-body">
                                 <input type="hidden" name="id" th:value="${ar.id}" readonly />
                                 <h3>Indeed?</h3>

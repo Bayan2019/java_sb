@@ -5,6 +5,8 @@
 
 package kz.bitlab.java_sb.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kz.bitlab.java_sb.model.ApplicationRequest;
+import kz.bitlab.java_sb.model.Operator;
 import kz.bitlab.java_sb.service.impl.ApplicationRequestServiceImpl;
 import kz.bitlab.java_sb.service.impl.CourseServiceImpl;
+import kz.bitlab.java_sb.service.impl.OperatorServiceImpl;
 
 
 
@@ -30,6 +34,8 @@ public class ApplicationRequestController {
     private ApplicationRequestServiceImpl applicationRequestService;
     @Autowired
     private CourseServiceImpl courseService;
+    @Autowired
+    private OperatorServiceImpl operatorService;
 
     @GetMapping(value="/crm")
     public String mainPage(Model model) {
@@ -58,8 +64,11 @@ public class ApplicationRequestController {
 
     @GetMapping(value = "/crm/detail-request/{id}")
     public String detailRequest(Model model, @PathVariable Long id) {
-        model.addAttribute("ar", applicationRequestService.getApplicationRequestById(id));
+        ApplicationRequest ar = applicationRequestService.getApplicationRequestById(id);
+        ArrayList<Operator> operators = operatorService.getAllOperators();
+        model.addAttribute("ar", ar);
         model.addAttribute("courses", courseService.getAllCourses());
+        model.addAttribute("operators", operators);
         return "sprint2/detail-request";
     }
     
