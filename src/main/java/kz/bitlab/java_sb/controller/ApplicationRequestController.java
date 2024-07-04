@@ -80,7 +80,6 @@ public class ApplicationRequestController {
 
     @PostMapping(value = "/crm/detail-request/process")
     public String detailRequestProcessed(@RequestParam Long application_request_id, @RequestParam Integer[] operators) {
-        System.out.print(operators);
         ApplicationRequest ar = applicationRequestService.getApplicationRequestById(application_request_id);
         for (int operator_id:operators) {
             if (operator_id!=0) {
