@@ -6,6 +6,7 @@
 package kz.bitlab.java_sb.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,6 +89,16 @@ public class ApplicationRequestController {
     public String detailRequestDelete(@RequestParam Long id) {
         applicationRequestService.deleteApplicationRequest(id);
         return "redirect:/crm";
+    }
+
+    @PostMapping(value="/crm/detail-request/add-operator")
+    public String deleteOperator(@RequestParam Long application_request_id, @RequestParam int operator_id) {
+        return "redirect:/crm/detail-request/"+application_request_id;
+    }
+
+    @PostMapping(value="/crm/detail-request/delete-operator")
+    public String deleteOperator(@RequestParam Long application_request_id, @RequestParam List<Integer> operators) {
+        return "redirect:/crm/detail-request/"+application_request_id;
     }
 
 }

@@ -4,8 +4,32 @@
     layout:decorate="layouts/crm-layout">
     <div layout:fragment="siteContent">
         <div style="margin: 5px;" th:object="${ar}">
+            <div class="col-4" th:style="${ar.handled} ? 'color: red' : 'display: none'">
+                <table class="table table-secondary">
+                    <thead>
+                        <th></th>
+                        <th>NAME</th>
+                        <th>SURNAME</th>
+                        <th>DEPARTMENT</th>
+                    </thead>
+                    <tbody th:each="operator: ${ar.getOperators()}">
+                        <form th:action="@{'/crm/detail-request/delete-operator'}" method="post">
+                            <input type="hidden" name="application_request_id" th:value="${ar.id}">
+                            <input type="hidden" name="operator_id" th:value="${operator.id}">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-danger"> x </button>
+                                </td>
+                                <td th:text="${operator.name}"></td>
+                                <td th:text="${operator.surname}"></td>
+                                <td th:text="${operator.department}"></td>
+                            </tr>
+                        </form>
+                    </tbody>
+                </table>
+            </div>
             <form th:action="@{'/crm/detail-request'}" method="post">
-                <h1 th:style="${ar.handled} ? 'color: green;' : 'color: red;'" th:text="${ar.handled} ? 'Processed' : 'Not Processed'"></h1>
+                <!-- <h1 th:style="${ar.handled} ? 'color: green;' : 'color: red;'" th:text="${ar.handled} ? 'Processed' : 'Not Processed'"></h1> -->
                 <div>
                     <label for="applicationId">ID</label>
                     <input type="text" name="id" id="applicationId" th:value="${ar.id}" readonly class="form-control"> <br/>
@@ -66,7 +90,7 @@
                                         <th>DEPARTMENT</th>
                                     </thead>
                                     <tbody th:each="operator: ${operators}">
-                                        <input type="hidden" name="operator_id" th:value="${operator.id}">
+                                        <input type="hidden" name="operators" th:value="${operator.id}">
                                         <tr>
                                             <td>
                                                 <input type="checkbox" name="operator" value="${operator.id}">
@@ -80,11 +104,10 @@
                             </div>
                             <div class="modal-body">
                                 <input type="hidden" name="id" th:value="${ar.id}" readonly />
-                                <h3>Indeed?</h3>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
-                                <button type="submit" class="btn btn-primary">PROCESS</button>
+                                <button type="submit" class="btn btn-primary">ASSIGN</button>
                             </div>
                         </form>
                     </div>
