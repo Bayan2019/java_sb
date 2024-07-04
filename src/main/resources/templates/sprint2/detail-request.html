@@ -90,10 +90,10 @@
                                         <th>DEPARTMENT</th>
                                     </thead>
                                     <tbody th:each="operator: ${operators}">
-                                        <input type="hidden" name="operators" th:value="${operator.id}">
+                                        <!-- <input type="hidden" name="operators" th:value="${operator.id}"> -->
                                         <tr>
                                             <td>
-                                                <input type="checkbox" name="operator" value="${operator.id}">
+                                                <input type="checkbox" name="operators" th:value="${operator.id}">
                                             </td>
                                             <td th:text="${operator.name}"></td>
                                             <td th:text="${operator.surname}"></td>
@@ -102,9 +102,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="modal-body">
+                            <!-- <div class="modal-body">
                                 <input type="hidden" name="id" th:value="${ar.id}" readonly />
-                            </div>
+                            </div> -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
                                 <button type="submit" class="btn btn-primary">ASSIGN</button>

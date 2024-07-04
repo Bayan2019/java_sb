@@ -6,7 +6,6 @@
 package kz.bitlab.java_sb.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,9 +79,17 @@ public class ApplicationRequestController {
     }
 
     @PostMapping(value = "/crm/detail-request/process")
-    public String detailRequestProcessed(@RequestParam Long id) {
-        applicationRequestService.processApplicationRequest(applicationRequestService.getApplicationRequestById(id));
-        return "redirect:/crm/detail-request/"+id.toString();
+    public String detailRequestProcessed(@RequestParam Long application_request_id, @RequestParam Integer[] operators) {
+        System.out.print(operators);
+        ApplicationRequest ar = applicationRequestService.getApplicationRequestById(application_request_id);
+        for (int operator_id:operators) {
+            if (operator_id!=0) {
+                ar.getOperators().add(operatorService.getOperatorById(operator_id));
+            }
+        }
+        applicationRequestService.updateApplicationRequest(ar);
+        applicationRequestService.processApplicationRequest(ar);
+        return "redirect:/crm/detail-request/"+application_request_id.toString();
     }
 
     @PostMapping(value = "/crm/detail-request/delete")
@@ -91,13 +98,8 @@ public class ApplicationRequestController {
         return "redirect:/crm";
     }
 
-    @PostMapping(value="/crm/detail-request/add-operator")
-    public String deleteOperator(@RequestParam Long application_request_id, @RequestParam int operator_id) {
-        return "redirect:/crm/detail-request/"+application_request_id;
-    }
-
     @PostMapping(value="/crm/detail-request/delete-operator")
-    public String deleteOperator(@RequestParam Long application_request_id, @RequestParam List<Integer> operators) {
+    public String deleteOperator(@RequestParam Long application_request_id, @RequestParam int operator_id) {
         return "redirect:/crm/detail-request/"+application_request_id;
     }
 

@@ -18,4 +18,6 @@ import kz.bitlab.java_sb.model.Operator;
 @Service
 public interface OperatorService {
     ArrayList<Operator> getAllOperators();
+
+    Operator getOperatorById(int id);
 }

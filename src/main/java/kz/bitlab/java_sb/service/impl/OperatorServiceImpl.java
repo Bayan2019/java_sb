@@ -28,4 +28,9 @@ public class OperatorServiceImpl implements OperatorService {
     public ArrayList<Operator> getAllOperators() {
         return (ArrayList<Operator>) operatorRepository.findAll();
     }
+
+    @Override
+    public Operator getOperatorById(int id) {
+        return operatorRepository.findById(id).orElse(null);
+    }
 }
