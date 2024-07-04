@@ -99,6 +99,11 @@ public class ApplicationRequestController {
 
     @PostMapping(value="/crm/detail-request/delete-operator")
     public String deleteOperator(@RequestParam Long application_request_id, @RequestParam int operator_id) {
+        ApplicationRequest ar = applicationRequestService.getApplicationRequestById(application_request_id);
+        Operator operator = operatorService.getOperatorById(operator_id);
+        ar.getOperators().remove(operator);
+        applicationRequestService.updateApplicationRequest(ar);
+
         return "redirect:/crm/detail-request/"+application_request_id;
     }
 
