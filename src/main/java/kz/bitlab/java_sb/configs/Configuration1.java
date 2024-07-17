@@ -10,8 +10,6 @@ import java.util.HashMap;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -34,7 +32,6 @@ import jakarta.persistence.EntityManagerFactory;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @EnableJpaRepositories(
     entityManagerFactoryRef="entity1",
     basePackages="kz.bitlab.java_sb.repository",
@@ -49,8 +46,8 @@ public class Configuration1 {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name="builder1")
-    public EntityManagerFactoryBuilder entityManagerFactoryBuilder1() {
+    // @Bean(name="builder1")
+    private EntityManagerFactoryBuilder entityManagerFactoryBuilder1() {
     return new EntityManagerFactoryBuilder(new HibernateJpaVendorAdapter(), new HashMap<>(), null);
     }
 

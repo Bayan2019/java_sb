@@ -35,8 +35,8 @@ public class Configuration2 {
         return DataSourceBuilder.create().build();
     }
 
-    @Bean(name="builder2")
-    public EntityManagerFactoryBuilder entityManagerFactoryBuilder2() {
+    // @Bean(name="builder2")
+    private EntityManagerFactoryBuilder entityManagerFactoryBuilder2() {
     return new EntityManagerFactoryBuilder(new HibernateJpaVendorAdapter(), new HashMap<>(), null);
     }
 
